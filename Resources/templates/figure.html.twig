@@ -1,0 +1,7 @@
+<figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
+    <!-- Link to the big image, not mandatory, but usefull when there is no JS -->
+    <a href="{{ image.href }}" data-caption="{{ image.dataCaption }}" data-width="{{ image.dataWidth }}" data-height="{{ image.dataHeight }}" itemprop="contentUrl">
+        <!-- Thumbnail -->
+        <img data-key="{{ key }}" src="{{ image.src }}" itemprop="thumbnail" alt="Image description">
+    </a>
+</figure>
