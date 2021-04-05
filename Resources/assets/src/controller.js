@@ -38,6 +38,9 @@ export default class extends Controller {
             }
         }
 
+        this._dispatchEvent('photoswipe:pre-connect', { options: definedOptions });
+
+
         document.querySelectorAll('figure').forEach(element => {
             var $link = element.querySelector('a'),
                 item = {
@@ -59,7 +62,7 @@ export default class extends Controller {
             })
         })
         
-        this._dispatchEvent('photoswipe:connect', { elements });
+        this._dispatchEvent('photoswipe:connect', { gallery: gallery, options: definedOptions });
     }
 
     _dispatchEvent(name, payload = null, canBubble = false, cancelable = false) {

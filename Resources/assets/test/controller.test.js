@@ -9,12 +9,12 @@
 
 'use strict';
 
-import { Application, Controller } from 'stimulus';
-import { getByTestId, waitFor } from '@testing-library/dom';
-import { clearDOM, mountDOM } from '@symfony/stimulus-testing';
+import {Application, Controller} from 'stimulus';
+import {getByTestId, waitFor} from '@testing-library/dom';
+import {clearDOM, mountDOM} from '@symfony/stimulus-testing';
 import PhotoswipeController from '../dist/controller';
 import 'regenerator-runtime/runtime'
-import { toHaveStyle } from '@testing-library/jest-dom'
+import {toHaveStyle} from '@testing-library/jest-dom'
 
 // Controller used to check the actual controller was properly booted
 class CheckController extends Controller {
@@ -25,7 +25,7 @@ class CheckController extends Controller {
 
         this.element.addEventListener('photoswipe:connect', (event) => {
             this.element.classList.add('connected');
-            this.element.chart = event.detail.chart;
+            this.element.options = event.detail.options;
         });
     }
 }
@@ -38,6 +38,74 @@ const startStimulus = () => {
 
 describe('PhotoswipeController', () => {
     let container;
+    let galleryHtml = `
+        <div id="pswp">
+
+        </div>
+        <div data-testid="photoswipe"
+             data-controller="check photoswipe"
+             id="gallery" className="gallery" itemScope="" itemType="http://schema.org/ImageGallery">
+            <figure itemProp="associatedMedia" itemScope="" itemType="http://schema.org/ImageObject">
+                <!-- Link to the big image, not mandatory, but usefull when there is no JS -->
+                <a href="https://unsplash.it/1200/900/?image=642"
+                   data-caption="Sea side, south shore<br><em class='text-muted'>© Dominik Schröder</em>" data-width="1200"
+                   data-height="700" itemProp="contentUrl">
+                    <!-- Thumbnail -->
+                    <img data-key="0" src="https://unsplash.it/400/300/?image=642" itemProp="thumbnail"
+                         alt="Image description">
+                </a>
+            </figure>
+            <figure itemProp="associatedMedia" itemScope="" itemType="http://schema.org/ImageObject">
+                <!-- Link to the big image, not mandatory, but usefull when there is no JS -->
+                <a href="https://unsplash.it/1200/900/?image=876"
+                   data-caption="Sea side, south shore<br><em class='text-muted'>© Dominik Schröder</em>" data-width="1200"
+                   data-height="700" itemProp="contentUrl">
+                    <!-- Thumbnail -->
+                    <img data-key="1" src="https://unsplash.it/400/300/?image=876" itemProp="thumbnail"
+                         alt="Image description">
+                </a>
+            </figure>
+            <figure itemProp="associatedMedia" itemScope="" itemType="http://schema.org/ImageObject">
+                <!-- Link to the big image, not mandatory, but usefull when there is no JS -->
+                <a href="https://unsplash.it/1200/900/?image=764"
+                   data-caption="Sea side, south shore<br><em class='text-muted'>© Dominik Schröder</em>" data-width="1200"
+                   data-height="700" itemProp="contentUrl">
+                    <!-- Thumbnail -->
+                    <img data-key="2" src="https://unsplash.it/400/300/?image=764" itemProp="thumbnail"
+                         alt="Image description">
+                </a>
+            </figure>
+            <figure itemProp="associatedMedia" itemScope="" itemType="http://schema.org/ImageObject">
+                <!-- Link to the big image, not mandatory, but usefull when there is no JS -->
+                <a href="https://unsplash.it/1200/900/?image=208"
+                   data-caption="Sea side, south shore<br><em class='text-muted'>© Dominik Schröder</em>" data-width="1200"
+                   data-height="700" itemProp="contentUrl">
+                    <!-- Thumbnail -->
+                    <img data-key="3" src="https://unsplash.it/400/300/?image=208" itemProp="thumbnail"
+                         alt="Image description">
+                </a>
+            </figure>
+            <figure itemProp="associatedMedia" itemScope="" itemType="http://schema.org/ImageObject">
+                <!-- Link to the big image, not mandatory, but usefull when there is no JS -->
+                <a href="https://unsplash.it/1200/900/?image=626"
+                   data-caption="Sea side, south shore<br><em class='text-muted'>© Dominik Schröder</em>" data-width="1200"
+                   data-height="700" itemProp="contentUrl">
+                    <!-- Thumbnail -->
+                    <img data-key="4" src="https://unsplash.it/400/300/?image=626" itemProp="thumbnail"
+                         alt="Image description">
+                </a>
+            </figure>
+            <figure itemProp="associatedMedia" itemScope="" itemType="http://schema.org/ImageObject">
+                <!-- Link to the big image, not mandatory, but usefull when there is no JS -->
+                <a href="https://unsplash.it/1200/900/?image=436"
+                   data-caption="Sea side, south shore<br><em class='text-muted'>© Dominik Schröder</em>" data-width="1200"
+                   data-height="700" itemProp="contentUrl">
+                    <!-- Thumbnail -->
+                    <img data-key="5" src="https://unsplash.it/400/300/?image=436" itemProp="thumbnail"
+                         alt="Image description">
+                </a>
+            </figure>
+        </div>`;
 
     afterEach(() => {
         clearDOM();
@@ -45,45 +113,43 @@ describe('PhotoswipeController', () => {
 
     it('connect without options', async () => {
         container = mountDOM(`
-            <canvas
-                data-testid="canvas"
-                data-controller="check chartjs"
-                data-view="&#x7B;&quot;type&quot;&#x3A;&quot;line&quot;,&quot;data&quot;&#x3A;&#x7B;&quot;labels&quot;&#x3A;&#x5B;&quot;January&quot;,&quot;February&quot;,&quot;March&quot;,&quot;April&quot;,&quot;May&quot;,&quot;June&quot;,&quot;July&quot;&#x5D;,&quot;datasets&quot;&#x3A;&#x5B;&#x7B;&quot;label&quot;&#x3A;&quot;My&#x20;First&#x20;dataset&quot;,&quot;backgroundColor&quot;&#x3A;&quot;rgb&#x28;255,&#x20;99,&#x20;132&#x29;&quot;,&quot;borderColor&quot;&#x3A;&quot;rgb&#x28;255,&#x20;99,&#x20;132&#x29;&quot;,&quot;data&quot;&#x3A;&#x5B;0,10,5,2,20,30,45&#x5D;&#x7D;&#x5D;&#x7D;,&quot;options&quot;&#x3A;&#x5B;&#x5D;&#x7D;"
-            ></canvas>
+            <div data-options='{}'>
+                ${galleryHtml}
+            </div>
         `);
 
-        expect(getByTestId(container, 'canvas')).not.toHaveClass('pre-connected');
-        expect(getByTestId(container, 'canvas')).not.toHaveClass('connected');
+        expect(getByTestId(container, 'photoswipe')).not.toHaveClass('pre-connected');
+        expect(getByTestId(container, 'photoswipe')).not.toHaveClass('connected');
 
         startStimulus();
         await waitFor(() => {
-            expect(getByTestId(container, 'canvas')).toHaveClass('pre-connected');
-            expect(getByTestId(container, 'canvas')).toHaveClass('connected');
+            expect(getByTestId(container, 'photoswipe')).toHaveClass('pre-connected');
+            expect(getByTestId(container, 'photoswipe')).toHaveClass('connected');
         });
 
-        const chart = getByTestId(container, 'canvas').chart;
-        expect(chart.options.showLines).toBe(true);
+        const options = getByTestId(container, 'photoswipe').options;
+        expect(options.arrowKeys).toBe(undefined);
     });
+
+    return;
 
     it('connect with options', async () => {
         container = mountDOM(`
-            <canvas
-                data-testid="canvas"
-                data-controller="check chartjs"
-                data-view="&#x7B;&quot;type&quot;&#x3A;&quot;line&quot;,&quot;data&quot;&#x3A;&#x7B;&quot;labels&quot;&#x3A;&#x5B;&quot;January&quot;,&quot;February&quot;,&quot;March&quot;,&quot;April&quot;,&quot;May&quot;,&quot;June&quot;,&quot;July&quot;&#x5D;,&quot;datasets&quot;&#x3A;&#x5B;&#x7B;&quot;label&quot;&#x3A;&quot;My&#x20;First&#x20;dataset&quot;,&quot;backgroundColor&quot;&#x3A;&quot;rgb&#x28;255,&#x20;99,&#x20;132&#x29;&quot;,&quot;borderColor&quot;&#x3A;&quot;rgb&#x28;255,&#x20;99,&#x20;132&#x29;&quot;,&quot;data&quot;&#x3A;&#x5B;0,10,5,2,20,30,45&#x5D;&#x7D;&#x5D;&#x7D;,&quot;options&quot;&#x3A;&#x7B;&quot;showLines&quot;&#x3A;false&#x7D;&#x7D;"
-            ></canvas>
+            <div data-options='{"arrowKeys":"false","bgOpacity":"0.5"}'>
+                 ${galleryHtml}
+            </div>
         `);
 
-        expect(getByTestId(container, 'canvas')).not.toHaveClass('pre-connected');
-        expect(getByTestId(container, 'canvas')).not.toHaveClass('connected');
+        expect(getByTestId(container, 'photoswipe')).not.toHaveClass('pre-connected');
+        expect(getByTestId(container, 'photoswipe')).not.toHaveClass('connected');
 
         startStimulus();
         await waitFor(() => {
-            expect(getByTestId(container, 'canvas')).toHaveClass('pre-connected');
-            expect(getByTestId(container, 'canvas')).toHaveClass('connected');
+            expect(getByTestId(container, 'photoswipe')).toHaveClass('pre-connected');
+            expect(getByTestId(container, 'photoswipe')).toHaveClass('connected');
         });
 
-        const chart = getByTestId(container, 'canvas').chart;
-        expect(chart.options.showLines).toBe(false);
+        const options = getByTestId(container, 'photoswipe').options;
+        expect(options.arrowKeys).toBe(false);
     });
 });

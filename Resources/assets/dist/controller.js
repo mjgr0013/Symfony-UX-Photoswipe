@@ -78,6 +78,10 @@ var _default = /*#__PURE__*/function (_Controller) {
         }
       }
 
+      this._dispatchEvent('photoswipe:pre-connect', {
+        options: definedOptions
+      });
+
       document.querySelectorAll('figure').forEach(function (element) {
         var $link = element.querySelector('a'),
             item = {
@@ -98,7 +102,8 @@ var _default = /*#__PURE__*/function (_Controller) {
       });
 
       this._dispatchEvent('photoswipe:connect', {
-        elements: elements
+        gallery: gallery,
+        options: definedOptions
       });
     }
   }, {
