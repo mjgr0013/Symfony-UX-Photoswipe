@@ -1,3 +1,5 @@
 vendor
 .idea
 Resources/assets/node_modules
+.phpunit.result.cache
+.php_cs.cache

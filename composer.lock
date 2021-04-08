@@ -733,12 +733,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/http-foundation.git",
-                "reference": "579ddf0239c4454be77727bd8a6f9e4fd84118d1"
+                "reference": "b59a5849549692729f0497c0a95c683a3eaad774"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/http-foundation/zipball/579ddf0239c4454be77727bd8a6f9e4fd84118d1",
-                "reference": "579ddf0239c4454be77727bd8a6f9e4fd84118d1",
+                "url": "https://api.github.com/repos/symfony/http-foundation/zipball/b59a5849549692729f0497c0a95c683a3eaad774",
+                "reference": "b59a5849549692729f0497c0a95c683a3eaad774",
                 "shasum": ""
             },
             "require": {
@@ -795,7 +795,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-04-01T10:43:52+00:00"
+            "time": "2021-04-04T12:44:25+00:00"
         },
         {
             "name": "symfony/http-kernel",
@@ -803,12 +803,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/http-kernel.git",
-                "reference": "ebc9be16a32b6f4fe27f76f179354bcb3f9d81fe"
+                "reference": "58b396bf790055e99694cf5a8789ad14b6e541eb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/http-kernel/zipball/ebc9be16a32b6f4fe27f76f179354bcb3f9d81fe",
-                "reference": "ebc9be16a32b6f4fe27f76f179354bcb3f9d81fe",
+                "url": "https://api.github.com/repos/symfony/http-kernel/zipball/58b396bf790055e99694cf5a8789ad14b6e541eb",
+                "reference": "58b396bf790055e99694cf5a8789ad14b6e541eb",
                 "shasum": ""
             },
             "require": {
@@ -904,7 +904,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-03-30T14:47:58+00:00"
+            "time": "2021-04-04T12:44:25+00:00"
         },
         {
             "name": "symfony/polyfill-ctype",
@@ -1685,12 +1685,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/dbal.git",
-                "reference": "b2befb0e4174aa95016ea14f26f44895a3e3a816"
+                "reference": "5fb65432250b625644ac9b1c4c07a90000ef758f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/dbal/zipball/b2befb0e4174aa95016ea14f26f44895a3e3a816",
-                "reference": "b2befb0e4174aa95016ea14f26f44895a3e3a816",
+                "url": "https://api.github.com/repos/doctrine/dbal/zipball/5fb65432250b625644ac9b1c4c07a90000ef758f",
+                "reference": "5fb65432250b625644ac9b1c4c07a90000ef758f",
                 "shasum": ""
             },
             "require": {
@@ -1780,7 +1780,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-04-02T00:00:22+00:00"
+            "time": "2021-04-05T00:54:36+00:00"
         },
         {
             "name": "doctrine/deprecations",
@@ -1827,12 +1827,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/DoctrineBundle.git",
-                "reference": "a7c9924af2f4b1c5588841859a8aaa98e9563e38"
+                "reference": "9c9780db5d31f1018cf806c45bdc57c70906ce99"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/DoctrineBundle/zipball/a7c9924af2f4b1c5588841859a8aaa98e9563e38",
-                "reference": "a7c9924af2f4b1c5588841859a8aaa98e9563e38",
+                "url": "https://api.github.com/repos/doctrine/DoctrineBundle/zipball/9c9780db5d31f1018cf806c45bdc57c70906ce99",
+                "reference": "9c9780db5d31f1018cf806c45bdc57c70906ce99",
                 "shasum": ""
             },
             "require": {
@@ -1844,7 +1844,7 @@
                 "symfony/config": "^4.3.3|^5.0",
                 "symfony/console": "^3.4.30|^4.3.3|^5.0",
                 "symfony/dependency-injection": "^4.3.3|^5.0",
-                "symfony/doctrine-bridge": "^4.3.7|^5.0",
+                "symfony/doctrine-bridge": "^4.4.7|^5.0",
                 "symfony/framework-bundle": "^3.4.30|^4.3.3|^5.0",
                 "symfony/service-contracts": "^1.1.1|^2.0"
             },
@@ -1857,25 +1857,25 @@
                 "doctrine/orm": "^2.6",
                 "friendsofphp/proxy-manager-lts": "^1.0",
                 "phpunit/phpunit": "^7.5 || ^8.0 || ^9.3",
-                "symfony/phpunit-bridge": "^4.2",
+                "psalm/plugin-phpunit": "^0.15.1",
+                "psalm/plugin-symfony": "^2.2.4",
+                "symfony/phpunit-bridge": "^5.2",
                 "symfony/property-info": "^4.3.3|^5.0",
                 "symfony/proxy-manager-bridge": "^3.4|^4.3.3|^5.0",
+                "symfony/security-bundle": "^4.4|5.0",
                 "symfony/twig-bridge": "^3.4.30|^4.3.3|^5.0",
                 "symfony/validator": "^3.4.30|^4.3.3|^5.0",
                 "symfony/web-profiler-bundle": "^3.4.30|^4.3.3|^5.0",
                 "symfony/yaml": "^3.4.30|^4.3.3|^5.0",
-                "twig/twig": "^1.34|^2.12|^3.0"
+                "twig/twig": "^1.34|^2.12|^3.0",
+                "vimeo/psalm": "^4.7"
             },
             "suggest": {
                 "doctrine/orm": "The Doctrine ORM integration is optional in the bundle.",
+                "ext-pdo": "*",
                 "symfony/web-profiler-bundle": "To use the data collector."
             },
             "type": "symfony-bundle",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "2.3.x-dev"
-                }
-            },
             "autoload": {
                 "psr-4": {
                     "Doctrine\\Bundle\\DoctrineBundle\\": ""
@@ -1925,7 +1925,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-04-02T13:44:58+00:00"
+            "time": "2021-04-05T14:41:08+00:00"
         },
         {
             "name": "doctrine/event-manager",
@@ -2090,12 +2090,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/persistence.git",
-                "reference": "12a05f8d1ca070f491b25a82ba1b8e9448da9f21"
+                "reference": "210e9f587211131258f07da7985a2b3522ffd07f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/persistence/zipball/12a05f8d1ca070f491b25a82ba1b8e9448da9f21",
-                "reference": "12a05f8d1ca070f491b25a82ba1b8e9448da9f21",
+                "url": "https://api.github.com/repos/doctrine/persistence/zipball/210e9f587211131258f07da7985a2b3522ffd07f",
+                "reference": "210e9f587211131258f07da7985a2b3522ffd07f",
                 "shasum": ""
             },
             "require": {
@@ -2164,7 +2164,7 @@
                 "orm",
                 "persistence"
             ],
-            "time": "2021-02-17T17:02:42+00:00"
+            "time": "2021-04-05T13:00:25+00:00"
         },
         {
             "name": "doctrine/sql-formatter",
