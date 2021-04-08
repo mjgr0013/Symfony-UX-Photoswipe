@@ -1,5 +1,5 @@
 {
-    "name": "symfony/ux-photoswipe",
+    "name": "manu/ux-photoswipe",
     "type": "symfony-bundle",
     "description": "Photoswipe integration for Symfony",
     "keywords": [
