@@ -14,10 +14,12 @@ use Symfony\UX\Photoswipe\Model\Gallery;
 class GalleryBuilder implements GalleryBuilderInterface
 {
     /**
+     * @param array $options
+     * @param null|string $dataController
      * @return Gallery
      */
-    public function createGallery(): Gallery
+    public function createGallery($options = [], $dataController = null): Gallery
     {
-        return new Gallery();
+        return new Gallery($options = [], $dataController = null);
     }
 }

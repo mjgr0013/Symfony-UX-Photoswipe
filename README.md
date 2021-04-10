@@ -1,4 +1,4 @@
-# Symfony UX Chart.js
+# Symfony UX Photoswipe
 
 Symfony UX Photoswipe is a Symfony bundle integrating the [Photoswipe](https://photoswipe.com/)
 library in Symfony applications. It is part of [the Symfony UX initiative](https://symfony.com/ux).
@@ -55,10 +55,10 @@ class HomeController extends AbstractController
         $gallery->addOption('bgOpacity', 0.5);
         
         // Also yo can assign massively options
-/*        $gallery->setOptions([
+        $gallery->setOptions([
             'arrowKeys' => "false",
             'bgOpacity' => 0.5
-        ]);*/
+        ]);
 
         foreach ($images as $image) {
             $gallery->addImage(new Image($image['href'], $image['src'],$image['data-caption']));
@@ -96,45 +96,28 @@ import { Controller } from 'stimulus';
 
 export default class extends Controller {
     connect() {
-        this.element.addEventListener('chartjs:pre-connect', this._onPreConnect);
-        this.element.addEventListener('chartjs:connect', this._onConnect);
+        this.element.addEventListener('photoswipe:pre-connect', this._onPreConnect);
+        this.element.addEventListener('photoswipe:connect', this._onConnect);
     }
 
     disconnect() {
         // You should always remove listeners when the controller is disconnected to avoid side effects
-        this.element.removeEventListener('chartjs:pre-connect', this._onPreConnect);
-        this.element.removeEventListener('chartjs:connect', this._onConnect);
+        this.element.removeEventListener('photoswipe:pre-connect', this._onPreConnect);
+        this.element.removeEventListener('photoswipe:connect', this._onConnect);
     }
 
     _onPreConnect(event) {
         // The chart is not yet created
-        console.log(event.detail.options); // You can access the chart options using the event details
+        console.log(event.detail); // You can access the chart options using the event details
 
-        // For instance you can format Y axis
-        event.detail.options.scales = {
-            yAxes: [
-                {
-                    ticks: {
-                        callback: function (value, index, values) {
-                            /* ... */
-                        },
-                    },
-                },
-            ],
-        };
+        // Update some options
+        event.detail.options.arrowKeys = true;
+
     }
 
     _onConnect(event) {
-        // The chart was just created
-        console.log(event.detail.chart); // You can access the chart instance using the event details
-
-        // For instance you can listen to additional events
-        event.detail.chart.options.onHover = (mouseEvent) => {
-            /* ... */
-        };
-        event.detail.chart.options.onClick = (mouseEvent) => {
-            /* ... */
-        };
+        // The gallery was just created
+        console.log(event.detail.gallery); // You can access the gallery instance using the event details
     }
 }
 ```

@@ -13,7 +13,9 @@ use Symfony\UX\Photoswipe\Model\Gallery;
 interface GalleryBuilderInterface
 {
     /**
+     * @param array $options
+     * @param null|string $dataController
      * @return Gallery
      */
-    public function createGallery(): Gallery;
+    public function createGallery($options = [], $dataController = null): Gallery;
 }
