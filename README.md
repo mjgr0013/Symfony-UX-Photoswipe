@@ -35,7 +35,7 @@ class HomeController extends AbstractController
     /**
      * @Route("/", name="homepage")
      */
-    public function index(GalleryBuilderInterface $chartBuilder): Response
+    public function index(GalleryBuilderInterface $galleryBuilder): Response
     {
         $images = [];
 
@@ -59,14 +59,18 @@ class HomeController extends AbstractController
             'arrowKeys' => "false",
             'bgOpacity' => 0.5
         ]);
+        
+        // Also you can combine into single instantiation
+        $gallery = $galleryBuilder->createGallery(
+            ['arrowKeys' => false, 'bgOpacity' => 0.5],
+            'hello'
+        );
 
         foreach ($images as $image) {
             $gallery->addImage(new Image($image['href'], $image['src'],$image['data-caption']));
         }
 
-
         return $this->render('home/index.html.twig', [
-            'controller_name' => 'HomeController',
             'gallery' => $gallery
         ]);
     }
@@ -82,7 +86,7 @@ Once created in PHP, a chart can be displayed using Twig:
 {{ render_gallery(gallery) }}
 
 {# You can pass HTML attributes as a second argument to add them on the <canvas> tag #}
-{{ render_chart(chart, {'class': 'my-gallery'}) }}
+{{ render_chart(chart) }}
 ```
 
 ### Extend the default behavior
@@ -90,7 +94,7 @@ Once created in PHP, a chart can be displayed using Twig:
 Symfony UX Photoswipe allows you to extend its default behavior using a custom Stimulus controller:
 
 ```js
-// mychart_controller.js
+// gallery_controller.js
 
 import { Controller } from 'stimulus';
 
@@ -124,8 +128,9 @@ export default class extends Controller {
 
 Then in your render call, add your controller as an HTML attribute:
 
-```twig
-{{ render_gallery(gallery, {'data-controller': 'mygallery'}) }}
+```php
+/** @var Gallery $gallery */
+$gallery = $galleryBuilder->createGallery([], 'home');
 ```
 
 ## Backward Compatibility promise
@@ -142,7 +147,7 @@ meaning it is not bound to Symfony's BC policy for the moment.
 ### PHP tests
 
 ```sh
-php vendor/bin/phpunit
+php vendor/bin/simple-phpunit Tests
 ```
 
 ### JavaScript tests
