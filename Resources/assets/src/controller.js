@@ -53,16 +53,16 @@ export default class extends Controller {
         });
 
         document.querySelectorAll('a[itemprop="contentUrl"]').forEach(element => {
-            element.addEventListener('click', function (event) {
+            element.addEventListener('click', (event) => {
                 event.preventDefault();
-
+                
                 definedOptions.index = parseInt(event.target.dataset.key);
                 var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, elements, definedOptions);
                 gallery.init();
+
+                this._dispatchEvent('photoswipe:connect', { gallery: gallery, options: definedOptions });
             })
         })
-        
-        this._dispatchEvent('photoswipe:connect', { gallery: gallery, options: definedOptions });
     }
 
     _dispatchEvent(name, payload = null, canBubble = false, cancelable = false) {

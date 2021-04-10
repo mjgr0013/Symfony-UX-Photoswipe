@@ -1,4 +1,4 @@
-<div data-controller="symfony--ux-photoswipe--gallery" data-options="{{ gallery.getOptions|json_encode }}">
+<div data-controller="{{ gallery.getDataController }} symfony--ux-photoswipe--gallery" data-options="{{ gallery.getOptions|json_encode }}">
     <div class="pswp" id="pswp" tabindex="-1" role="dialog" aria-hidden="true">
 
         <!-- Background of PhotoSwipe.

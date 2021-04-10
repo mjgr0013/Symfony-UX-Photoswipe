@@ -61,6 +61,8 @@ var _default = /*#__PURE__*/function (_Controller) {
   _createClass(_default, [{
     key: "connect",
     value: function connect() {
+      var _this = this;
+
       var pswpElement = document.querySelector('#pswp'),
           elements = [];
       var definedOptions = JSON.parse(pswpElement.parentElement.dataset.options);
@@ -98,12 +100,12 @@ var _default = /*#__PURE__*/function (_Controller) {
           definedOptions.index = parseInt(event.target.dataset.key);
           var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, elements, definedOptions);
           gallery.init();
-        });
-      });
 
-      this._dispatchEvent('photoswipe:connect', {
-        gallery: gallery,
-        options: definedOptions
+          _this._dispatchEvent('photoswipe:connect', {
+            gallery: gallery,
+            options: definedOptions
+          });
+        });
       });
     }
   }, {

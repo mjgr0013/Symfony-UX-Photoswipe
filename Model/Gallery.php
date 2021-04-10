@@ -34,13 +34,19 @@ class Gallery
     private $options;
 
     /**
+     * @var string
+     */
+    private $dataController;
+
+    /**
      * Gallery constructor.
      * @param array $options
      */
-    public function __construct($options = [])
+    public function __construct($options = [], $dataController = null)
     {
         $this->images = new ArrayCollection();
         $this->options = $options;
+        $this->dataController = $dataController;
     }
 
     /**
@@ -96,5 +102,21 @@ class Gallery
         $this->options[$key] = $value;
 
         return $this->options;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDataController()
+    {
+        return $this->dataController;
+    }
+
+    /**
+     * @param string $dataController
+     */
+    public function setDataController(string $dataController)
+    {
+        $this->dataController = $dataController;
     }
 }
