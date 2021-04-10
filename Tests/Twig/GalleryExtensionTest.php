@@ -60,12 +60,11 @@ class GalleryExtensionTest extends TestCase
 
         $rendered = $container->get('test.photoswipe.twig_extension')->renderGallery(
             $container->get(Environment::class),
-            $gallery,
-            ['data-controller' => 'mycontroller', 'class' => 'myclass']
+            $gallery
         );
-
+        
         $crawler = new Crawler($rendered);
-
+        
         $this->assertEquals(
             $crawler->filter('figure')->count(),
             2
@@ -78,6 +77,26 @@ class GalleryExtensionTest extends TestCase
 
         $this->assertStringContainsString(
             'symfony--ux-photoswipe--gallery',
+            $rendered
+        );
+
+        // Rendered with custom dataController, in order to override default behaviour
+        $gallery->setDataController('homeController');
+        
+        $rendered = $container->get('test.photoswipe.twig_extension')->renderGallery(
+            $container->get(Environment::class),
+            $gallery
+        );
+
+        $crawler = new Crawler($rendered);
+
+        $this->assertEquals(
+            $crawler->filter('div[data-controller="' . $gallery->getDataController() . ' symfony--ux-photoswipe--gallery"]')->count(),
+            1
+        );
+
+        $this->assertStringContainsString(
+            "{$gallery->getDataController()} symfony--ux-photoswipe--gallery",
             $rendered
         );
     }
